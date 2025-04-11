@@ -18,7 +18,19 @@ The solution follows a traditional 3-layer architecture:
 - SQL Server (MySQL)
 
 ## 📸  Program Screenshots  
-![Program Overview](https://github.com/amir-akbari361/Ad_Management/blob/main/Screenshot1.png)
-![Ad Details Page](https://github.com/amir-akbari361/Ad_Management/blob/main/Screenshot2.png)
-![Login Page](https://github.com/amir-akbari361/Ad_Management/blob/main/Screenshot3.png)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/1.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/2.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/3.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/4.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/5.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/6.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/7.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/8.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/9.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/10.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/11.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/12.jpg)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/13.jpg)
+
+
 ---
