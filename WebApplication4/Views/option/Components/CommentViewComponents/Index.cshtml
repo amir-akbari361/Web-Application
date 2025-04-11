@@ -1,0 +1,16 @@
+﻿@model IEnumerable<BE.Nazarat>
+@foreach (var item in Model)
+{
+    <div class="tiny-slider text-center client-testi">
+        <p class="text-light para-dark h6 fst-italic">"@item.Nazarat_Matn"</p>
+        <ul class="list-unstyled mb-0 mt-3">
+            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+        </ul>
+        <h6 class="text-light title-dark"> @item.Nazarat_Name </h6>
+        <img src="images/client/@item.Nazarat_avatar" class="img-fluid avatar avatar-small rounded-circle mx-auto shadow" alt="">
+    </div>
+}

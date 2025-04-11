@@ -1,0 +1,488 @@
+﻿@model BE.Page
+
+@{
+    ViewData["Title"] = Model.NameHotel;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar STart -->
+    <!-- Logo container-->
+
+    @section head
+    {
+        <ul class="buy-button list-inline mb-0">
+            <li class="list-inline-item mb-0">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-link text-decoration-none dropdown-toggle p-0 pe-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="uil uil-search h5 text-muted"></i>
+                    </button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-0" style="width: 300px;">
+                        <form>
+                            <input type="text" id="text" name="name" class="form-control border bg-white" placeholder="جستجو...">
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="list-inline-item mb-0 pe-1">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-icon btn-soft-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-shopping-cart align-middle icons"></i></button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 p-4" style="width: 300px;">
+                        <div class="pb-4">
+                            <a href="javascript:void(0)" class="d-flex align-items-center">
+                                <img src="~/images/shop/product/s-1.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">تی شرت (مردانه)</h6>
+                                    <p class="text-muted mb-0">230 هزار تومان</p>
+                                </div>
+                                <h6 class="text-dark mb-0">230 هزار تومان</h6>
+                            </a>
+
+                            <a href="javascript:void(0)" class="d-flex align-items-center mt-4">
+                                <img src="~/images/shop/product/s-2.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">کیسه </h6>
+                                    <p class="text-muted mb-0">50 هزار تومان | 2 عدد</p>
+                                </div>
+                                <h6 class="text-dark mb-0">100 هزار تومان</h6>
+                            </a>
+
+                            <a href="javascript:void(0)" class="d-flex align-items-center mt-4">
+                                <img src="~/images/shop/product/s-3.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">ساعت (مردانه)</h6>
+                                    <p class="text-muted mb-0">800 هزار تومان | 1 عدد</p>
+                                </div>
+                                <h6 class="text-dark mb-0">800 هزار تومان</h6>
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between pt-4 border-top">
+                            <h6 class="text-dark mb-0">مجموع (تومان):</h6>
+                            <h6 class="text-dark mb-0">1,150,000 تومان</h6>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <a href="javascript:void(0)" class="btn btn-primary me-2">نمایش سبد خرید </a>
+                            <a href="javascript:void(0)" class="btn btn-primary">پرداخت </a>
+                        </div>
+                        <p class="text-muted text-start mt-1 mb-0"> </p>
+                    </div>
+                </div>
+            </li>
+            <li class="list-inline-item mb-0 pe-1">
+                <a href="#" class="btn btn-icon btn-soft-primary" data-bs-toggle="modal" data-bs-target="#wishlist"><i class="uil uil-heart align-middle icons"></i></a>
+            </li>
+            <li class="list-inline-item mb-0">
+                <div class="dropdown dropdown-primary">
+                    <button type="button" class="btn btn-icon btn-soft-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-user align-middle icons"></i></button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-user align-middle me-1"></i> حساب کاربری</a>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-clipboard-notes align-middle me-1"></i> سفارشات من </a>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-arrow-circle-down align-middle me-1"></i> دانلود ها </a>
+                        <div class="dropdown-divider my-3 border-top"></div>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-sign-out-alt align-middle me-1"></i> خروج </a>
+                    </div>
+                </div>
+            </li>
+        </ul><!--end login button-->
+        <!-- End Logo container-->
+
+    }
+    <style>
+        .cta {
+            position: relative;
+            margin: auto;
+            padding: 12px 18px;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+        }
+
+            .cta:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                border-radius: 50px;
+                background: #b1dae7;
+                width: 45px;
+                height: 45px;
+                transition: all 0.3s ease;
+            }
+
+            .cta span {
+                position: relative;
+                font-family: "Ubuntu", sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                color: #234567;
+            }
+
+            .cta svg {
+                position: relative;
+                top: -3px;
+                margin-left: 10px;
+                fill: none;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke: #234567;
+                stroke-width: 2;
+                transform: translateX(-5px);
+                transition: all 0.3s ease;
+            }
+
+            .cta:hover:before {
+                width: 100%;
+                background: #b1dae7;
+            }
+
+            .cta:hover svg {
+                transform: translateX(0);
+            }
+
+            .cta:active {
+                transform: scale(0.95);
+            }
+    </style>
+    <!-- Navbar End -->
+    <!-- Hero Start -->
+    <section class="bg-half bg-light d-table w-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <div class="page-next-level">
+                        <h4 class="title"> @Model.NameHotel </h4>
+                        <div class="page-next">
+                            <nav aria-label="breadcrumb" class="d-inline-block">
+                                <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html">لنـدریـک </a></li>
+                                    <li class="breadcrumb-item"><a href="index-shop.html">فروشگاه </a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">جزئیات محصول </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div> <!--end container-->
+    </section><!--end section-->
+    <div class="position-relative">
+        <div class="shape overflow-hidden text-white">
+            <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+    <section class="section pb-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="tiny-single-item">
+                        <div class="tiny-slide"><img src="~/images/hotel/08.jpg" class="img-fluid rounded" alt=""></div>
+                        <div class="tiny-slide"><img src="~/images/hotel/07.jpg" class="img-fluid rounded" alt=""></div>
+                        <div class="tiny-slide"><img src="~/images/hotel/04.jpg" class="img-fluid rounded" alt=""></div>
+                        <div class="tiny-slide"><img src="~/images/hotel/06.jpg" class="img-fluid rounded" alt=""></div>
+                        <div class="tiny-slide"><img src="~/images/hotel/01.jpg" class="img-fluid rounded" alt=""></div>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <form asp-action="ShowRezerv" asp-controller="option" method="post">
+                        <div class="section-title ms-md-4">
+                            <h4 class="title">@Model.NameHotel</h4>
+                            <h5 class="text-muted">000 @Model.GheymatYekShab تومان<del class="text-danger ms-2">25000 تومان</del> </h5>
+                            <ul class="list-unstyled text-warning h5 mb-0">
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                            </ul>
+
+                            <h5 class="mt-4 py-2">بررسی:</h5>
+                            <p class="text-muted">@Model.Tozihat</p>
+
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> راه حل های بازاریابی دیجیتال برای فردا</li>
+                                <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> با استعداد ما و آژانس بازاریابی مجرب</li>
+                                <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span> پوست خود را متناسب با نام تجاری خود ایجاد کنید</li>
+                            </ul>
+
+                            <div class="row mt-4 pt-2">
+
+                                <div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                                    <div class="d-flex shop-list align-items-center">
+                                        <h6 class="mb-0">تعداد نفرات : </h6>
+                                        <div class="qty-icons ms-3">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-icon btn-soft-primary minus"type="button">-</button>
+                                            <input min="0" name="zarfeyat" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-icon btn-soft-primary plus"type="button">+</button>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+
+                                <!--<div class="col-lg-6 col-12 mt-4 mt-lg-0">
+                                    <div class="d-flex shop-list align-items-center">
+                                        <h6 class="mb-0">تعداد تخت : </h6>
+                                        <div class="qty-icons ms-3">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-icon btn-soft-primary minus"type="button">-</button>
+                                            <input min="0" name="tedadtakht" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">
+                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-icon btn-soft-primary plus"type="button">+</button>
+                                        </div>
+                                    </div>
+                                </div>--><!--end col-->
+                            </div><!--end row-->
+                            <input type="hidden" name="idhotel" value="@Model.HotelID" />
+                            <input type="hidden" name="khoroj" value="@ViewBag.khoroj" />
+                            <input type="hidden" name="vorod" value="@ViewBag.vorod" />
+                            <div class="mt-4 pt-2">
+                                <button class="buttonn" type="submit">
+                                    اکنون رزرو کنید
+                                </button>
+                            </div>
+                        </div>
+
+                        
+                    </form>
+
+
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-pills shadow flex-column flex-sm-row d-md-inline-flex mb-0 p-1 bg-white rounded position-relative overflow-hidden" id="pills-tab" role="tablist">
+                        <li class="nav-item m-1">
+                            <a class="nav-link py-2 px-5 active rounded" id="description-data" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">
+                                <div class="text-center">
+                                    <h6 class="mb-0">توضیحات </h6>
+                                </div>
+                            </a><!--end nav link-->
+                        </li><!--end nav item-->
+
+                        <li class="nav-item m-1">
+                            <a class="nav-link py-2 px-5 rounded" id="additional-info" data-bs-toggle="pill" href="#additional" role="tab" aria-controls="additional" aria-selected="false">
+                                <div class="text-center">
+                                    <h6 class="mb-0">اطلاعات تکمیلی</h6>
+                                </div>
+                            </a><!--end nav link-->
+                        </li><!--end nav item-->
+
+                        <li class="nav-item m-1">
+                            <a class="nav-link py-2 px-5 rounded" id="review-comments" data-bs-toggle="pill" href="#review" role="tab" aria-controls="review" aria-selected="false">
+                                <div class="text-center">
+                                    <h6 class="mb-0">نظرات </h6>
+                                </div>
+                            </a><!--end nav link-->
+                        </li><!--end nav item-->
+                    </ul>
+
+                    <div class="tab-content mt-5" id="pills-tabContent">
+                        <div class="card border-0 tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-data">
+                            <p class="text-muted mb-0">به دلیل استفاده گسترده از آن به عنوان متن پر کننده برای طرح بندی, غیرقابل خواندن از اهمیت زیادی برخوردار است:ادراک انسان برای شناسایی الگوها و تکرارهای خاص در متن تنظیم شده است. اگر توزیع حروف و کلمات تصادفی باشد ، خواننده از قضاوت بی طرف در مورد تأثیر بصری و خوانایی انواع حروف (تایپوگرافی) یا توزیع متن در صفحه (طرح یا منطقه نوع) منحرف نخواهد شد. . به همین دلیل ، متن ساختگی معمولاً از یک سری کلمات یا هجاهای کم و بیش تصادفی تشکیل شده است.</p>
+                        </div>
+
+                        <div class="card border-0 tab-pane fade" id="additional" role="tabpanel" aria-labelledby="additional-info">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 100px;">تخت</td>
+                                        <td class="text-muted">@Model.tedad_takht عدد</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>ظرفیت </td>
+                                        <td class="text-muted">@Model.zarfiat نفر</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>قیمت یک شب </td>
+                                        <td class="text-muted">@Model.GheymatYekShab هزار تومان</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card border-0 tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-comments">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <ul class="media-list list-unstyled mb-0">
+                                        @foreach (var item in Model.lstnazar.Take(5))
+                                        {
+                                            <li>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex align-items-center">
+                                                        <a class="pe-3" href="#">
+                                                            <img src="~/images/client/@item.Nazarat_avatar" class="img-fluid avatar avatar-md-sm rounded-circle shadow" alt="img">
+                                                        </a>
+                                                        <div class="flex-1 commentor-detail">
+                                                            <h6 class="mb-0"><a href="javascript:void(0)" class="text-dark media-heading">@item.Nazarat_Name</a></h6>
+                                                            <small class="text-muted">@item.Nazarat_Zaman</small>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="mt-3">
+                                                    <p class="text-muted fst-italic p-3 bg-light rounded">"  @item.Nazarat_Matn "</p>
+                                                </div>
+                                            </li>
+
+                                        }
+
+
+                                    </ul>
+                                </div><!--end col-->
+
+                                <div class="col-lg-6 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                                    <form class="ms-lg-4" asp-action="Sabtnazar" asp-controller="option" method="post">
+                                        <input type="hidden" required name="idhotel" value="@Model.HotelID" class="form-control" />
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5>اضافه کردن نظر:</h5>
+                                            </div>
+
+                                            <div class="col-md-12 mt-3">
+                                                <div class="mb-3">
+                                                    <label class="form-label">نظر شما:</label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="message-circle" class="fea icon-sm icons"></i>
+                                                        <textarea id="message" placeholder="کامنت شما" rows="5" name="matn" class="form-control ps-5" required=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">نام  <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input id="name" name="name" type="text" placeholder="نام" class="form-control ps-5" required="">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">ایمیل شما <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="mail" class="fea icon-sm icons"></i>
+                                                        <input id="email" type="email" placeholder="ایمیل" name="email" class="form-control ps-5" required="">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-md-12">
+                                                <div class="send d-grid">
+                                                    @*<button type="submit" class="btn btn-primary">ارسال </button>*@
+                                                    <button class="cta" type="submit">
+
+                                                        <svg width="15px" height="10px" viewBox="0 0 13 10">
+                                                            <path d="M1,5 L11,5"></path>
+                                                            <polyline points="8 1 12 5 8 9"></polyline>
+                                                        </svg>
+                                                        <span>ارسال</span>
+                                                    </button>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </form><!--end form-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="mb-0">اتاق های محبوب</h5>
+                </div><!--end col-->
+
+                <div class="col-12 mt-4">
+                    <div class="tiny-four-item">
+                        @await Component.InvokeAsync("RecentViewComponents")
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+
+        <div class="container-fluid mt-100 mt-60 px-0">
+            <div class="py-5 bg-light">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="@Url.Action("blog_detail","option")" class="text-dark align-items-center">
+                                    <span class="pro-icons"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left fea icon-sm"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>
+                                    <span class="text-muted d-none d-md-inline-block">توسعه وب </span>
+                                    <img src="~/images/work/6.jpg" class="avatar avatar-small rounded shadow ms-2" style="height:auto;" alt="">
+                                </a>
+
+                                <a href="@Url.Action("index","Home")" class="btn btn-lg btn-pills btn-icon btn-soft-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home icons"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+
+                                <a href="@Url.Action("blog_detail","option")" class="text-dark align-items-center">
+                                    <img src="~/images/work/7.jpg" class="avatar avatar-small rounded shadow me-2" style="height:auto;" alt="">
+                                    <span class="text-muted d-none d-md-inline-block">طراحی وب</span>
+                                    <span class="pro-icons"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+                                </a>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end container-->
+            </div><!--end div-->
+        </div>
+    </section><!--end section-->
+    <!-- Wishlist Popup Start -->
+    <div class="modal fade" id="wishlist" tabindex="-1" role="dialog" aria-labelledby="wishlist-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded shadow-lg border-0 overflow-hidden">
+                <div class="modal-body py-5">
+                    <div class="text-center">
+                        <div class="icon d-flex align-items-center justify-content-center bg-soft-danger rounded-circle mx-auto" style="height: 95px; width:95px;">
+                            <h1 class="mb-0"><i class="uil uil-heart-break align-middle"></i></h1>
+                        </div>
+                        <div class="mt-4">
+                            <h4>لیست خواسته های شما خالی است.</h4>
+                            <p class="text-muted">اولین درخواست لیست خواسته های خود را ایجاد کنید...</p>
+                            <div class="mt-4">
+                                <a href="javascript:void(0)" class="btn btn-outline-primary">+ لیست خواسته های جدید ایجاد کنید</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wishlist Popup End -->
+    <!-- Back to top -->
+    <a href="#" onclick="topFunction()" id="back-to-top" class="btn btn-icon btn-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+    <!-- Back to top -->
+    <!-- end Style switcher -->
+    <!-- javascript -->
+    @section Scripts
+    {
+        <script src="~/js/bootstrap.bundle.min.js"></script>
+        <!-- SLIDER -->
+        <script src="~/js/tiny-slider.js"></script>
+        <!-- Icons -->
+        <script src="~/js/feather.min.js"></script>
+        <!-- Switcher -->
+        <script src="~/js/switcher.js"></script>
+        <!-- Main Js -->
+        <script src="~/js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+        <script src="~/js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    }
+</body>
+
+

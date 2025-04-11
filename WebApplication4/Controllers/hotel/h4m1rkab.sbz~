@@ -1,0 +1,165 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using BE;
+using BLL;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Net;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Newtonsoft.Json.Linq;
+using DAL;
+namespace WebApplication4.Controllers.hotel
+{
+    public class optionController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View("~/Views/Home/Index.cshtml");
+        }
+        public IActionResult room()
+        {
+            return View("~/Views/Home/_rooms.cshtml");
+        }
+        public JsonResult tsjson()
+        {
+            return Json(new { Redirect = "jostejos" });
+        }
+
+        [HttpPost]
+        public IActionResult jostejos(byte zarfiat, DateTime tarikhvorod, DateTime ZamanPayan)
+        {
+            //JArray jsonArray1 = JArray.Parse(zarfiat);
+            //JArray jsonArray2 = JArray.Parse(tarikhvorod);
+            // JArray jsonArray3 = JArray.Parse(tarikhkhoroj);
+
+
+            //if (zarfiat==0)
+            //{
+            //    return Redirect("Address");
+            //}
+
+            //if (js.Find(zarfiat)==null)
+            //    return RedirectToAction("Index");
+            //}
+            bljostejos js = new bljostejos();
+
+            var list=js.jostejos(zarfiat, tarikhvorod, ZamanPayan);
+            
+            //return View(js);
+            return View("~/Views/option/jostejos.cshtml",js);
+        }
+
+        public IActionResult test(byte zarfiat, DateTime tarikhvorod, DateTime ZamanPayan)
+        {
+            db db = new db();
+
+
+
+            var qhotels2 = db.hotels.Where(s => s.zarfiat == zarfiat).ToList();
+            //var qhotels = db.hotels.Where(a => a.ZamanShoroa <= dtv && a.ZamanPayan >= dtkh && a.Faal == true && dtkh > DateTime.Now && dtv >= DateTime.Today).ToList();
+            //var qhotels3= db.hotels.Where(a => a.ZamanShoroa <= tarikhvorod && a.ZamanPayan >= tarikhkhoroj && a.Faal == true /*&& tarikhvorod > DateTime.Now && tarikhvorod >= DateTime.Today*/).ToList();
+            if (qhotels2 == null)
+                return RedirectToAction(nameof(Index));
+
+            List<int> lstidhotel = new List<int>();
+            foreach (var o in qhotels2)
+            {
+                var qjozeyat = db.hotels.Where(a => a.zarfiat == zarfiat).FirstOrDefault();
+                if (qjozeyat != null)
+                    lstidhotel.Add(o.Hotel_ID);
+                else
+                    lstidhotel.Add(0);
+                //Find(zarfiat);
+            }
+
+            if (lstidhotel.Count() > 0)
+            {
+                List<Hotel> t = new List<Hotel>();
+                List<Jostejo> lstjostejo = new List<Jostejo>();
+                foreach (var item in lstidhotel)
+                {
+                    if (item > 0)
+                    {
+                        var qhotel = db.hotels.Where(a => a.Hotel_ID.Equals(item) && a.Faal == true).FirstOrDefault();
+
+                        //var qhotel = db.hotels.Where(a => a.Hotel_ID.Equals(item) && a.ZamanShoroa <= dtv && a.ZamanPayan >= dtkh && a.Faal == true && dtkh > DateTime.Now && dtv >= DateTime.Today).FirstOrDefault();
+                        var qimg = db.hotels.Where(a => a.Hotel_ID == lstidhotel.FirstOrDefault()).Select(q => q.urlpic);
+
+
+
+                        t.Add(qhotel);
+
+                        //Jostejo j = new Jostejo();
+                        //j.GheymatYekShab = qhotel.Jozeyat_Gheymat;
+                        //j.HotelID = qhotel.Hotel_ID;
+                        //j.imgUrl = "~/images/hotel/" + qimg;
+                        //j.NameHotel = qhotel.Name_Hotel;
+                        //j.Adres = qhotel.Adres;
+                        //j.bathroom = qhotel.bathroom;
+                        //j.tedad_takht = qhotel.tedad_takht;
+                        //j.Tozihat = qhotel.Tozihat;
+                        //lstjostejo.Add(j);
+                        //db.SaveChanges();
+                    }
+                }
+
+                //string khroj = string.Format("{0}/{1}/{2}", pc.GetYear(dtkh), pc.GetMonth(dtkh), pc.GetDayOfMonth(dtkh));
+                //string vorod = string.Format("{0}/{1}/{2}", pc.GetYear(dtv), pc.GetMonth(dtv), pc.GetDayOfMonth(dtv));
+
+                //ViewData["khoroj"] = khroj;
+                //ViewData["vorod"] = vorod;
+                //return lstjostejo;
+                return View(t);
+           
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+                //return null;
+            }
+
+
+            //var list = db.hotels.Where(h=>h.name.Contains(s)).ToList();
+            //return View(list);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public IActionResult jostejos()
+        {
+            return View("~/Views/option/jostejos.cshtml");
+        }
+
+
+    }
+}

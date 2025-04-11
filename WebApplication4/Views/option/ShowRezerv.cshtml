@@ -1,0 +1,329 @@
+﻿@model BE.RezevHotel
+@{
+    ViewData["Title"] = "ShowRezerv";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    BLL.bljostejos k = new BLL.bljostejos();
+    var q = k.getrezervhotel(@ViewBag.id);
+    var v = q.NameHotel;
+    var s = q.Gheymat * @ViewBag.nafarat;
+
+}
+
+<body>
+    @section head
+    {
+        <ul class="buy-button list-inline mb-0">
+            <li class="list-inline-item mb-0">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-link text-decoration-none dropdown-toggle p-0 pe-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="uil uil-search h5 text-muted"></i>
+                    </button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-0" style="width: 300px;">
+                        <form>
+                            <input type="text" id="text" name="name" class="form-control border bg-white" placeholder="جستجو...">
+                        </form>
+                    </div>
+                </div>
+            </li>
+            <li class="list-inline-item mb-0 pe-1">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-icon btn-soft-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-shopping-cart align-middle icons"></i></button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 p-4" style="width: 300px;">
+                        <div class="pb-4">
+                            <a href="javascript:void(0)" class="d-flex align-items-center">
+                                <img src="~/images/shop/product/s-1.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">تی شرت (مردانه)</h6>
+                                    <p class="text-muted mb-0">230 هزار تومان</p>
+                                </div>
+                                <h6 class="text-dark mb-0">230 هزار تومان</h6>
+                            </a>
+
+                            <a href="javascript:void(0)" class="d-flex align-items-center mt-4">
+                                <img src="~/images/shop/product/s-2.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">کیسه </h6>
+                                    <p class="text-muted mb-0">50 هزار تومان | 2 عدد</p>
+                                </div>
+                                <h6 class="text-dark mb-0">100 هزار تومان</h6>
+                            </a>
+
+                            <a href="javascript:void(0)" class="d-flex align-items-center mt-4">
+                                <img src="~/images/shop/product/s-3.jpg" class="shadow rounded" style="max-height: 64px;" alt="">
+                                <div class="flex-1 text-start ms-3">
+                                    <h6 class="text-dark mb-0">ساعت (مردانه)</h6>
+                                    <p class="text-muted mb-0">800 هزار تومان | 1 عدد</p>
+                                </div>
+                                <h6 class="text-dark mb-0">800 هزار تومان</h6>
+                            </a>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between pt-4 border-top">
+                            <h6 class="text-dark mb-0">مجموع (تومان):</h6>
+                            <h6 class="text-dark mb-0">1,150,000 تومان</h6>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <a href="javascript:void(0)" class="btn btn-primary me-2">نمایش سبد خرید </a>
+                            <a href="javascript:void(0)" class="btn btn-primary">پرداخت </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-inline-item mb-0 pe-1">
+                <a href="#" class="btn btn-icon btn-soft-primary" data-bs-toggle="modal" data-bs-target="#wishlist"><i class="uil uil-heart align-middle icons"></i></a>
+            </li>
+            <li class="list-inline-item mb-0">
+                <div class="dropdown dropdown-primary">
+                    <button type="button" class="btn btn-icon btn-soft-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-user align-middle icons"></i></button>
+                    <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-user align-middle me-1"></i> حساب کاربری</a>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-clipboard-notes align-middle me-1"></i> سفارشات من </a>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-arrow-circle-down align-middle me-1"></i> دانلود ها </a>
+                        <div class="dropdown-divider my-3 border-top"></div>
+                        <a class="dropdown-item text-dark" href="#"><i class="uil uil-sign-out-alt align-middle me-1"></i> خروج </a>
+                    </div>
+                </div>
+            </li>
+        </ul><!--end login button-->
+        <!-- End Logo container-->
+
+    }
+    <!-- Hero Start -->
+    <section class="bg-half bg-light d-table w-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center">
+                    <div class="page-next-level">
+                        <h4 class="title"> صندوق ها </h4>
+                        <div class="page-next">
+                            <nav aria-label="breadcrumb" class="d-inline-block">
+                                <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                    <li class="breadcrumb-item"><a href="index.html">لنـدریـک </a></li>
+                                    <li class="breadcrumb-item"><a href="index-shop.html">فروشگاه </a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">صندوق ها </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div> <!--end container-->
+    </section><!--end section-->
+    <div class="position-relative">
+        <div class="shape overflow-hidden text-white">
+            <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!-- Start -->
+    <form asp-action="Pardakht" asp-controller="option" method="post">
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    @*<form class="mt-4" asp-action="Pardakht" asp-controller="option" method="post">*@
+                    <div class="col-lg-7 col-md-6">
+                        <div class="rounded shadow-lg p-4">
+                            <h5 class="mb-0">جزئیات صورتحساب :</h5>
+
+                            @*<form class="mt-4" asp-action="Pardakht" asp-controller="option" method="post" id="formsub">*@
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">نام شما <span class="text-danger">*</span></label>
+                                            <input name="name" id="firstname" type="text" class="form-control" placeholder="نام اول :">
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">نام خانوادگی  <span class="text-danger">*</span></label>
+                                            <input name="namekhanvadegy" id="lastname" type="text" class="form-control" placeholder="نام خانوادگی :">
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">کد ملی <span class="text-danger">*</span></label>
+                                            <input maxlength="10" name="codemeli" id="companyname" type="text" class="form-control" placeholder="کد ملی :">
+                                        </div>
+                                    </div><!--end col-->
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">جنسیت <span class="text-danger">*</span></label>
+                                            <select class="form-select form-control" name="jensyat" aria-label="به طور پیش فرض مثال انتخاب کنید">
+                                                <option value="مرد">مرد </option>
+                                                <option value="زن">زن </option>
+                                            </select>
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">تلفن  <span class="text-danger">*</span></label>
+                                            <input type="text" maxlength="11" name="mobile" id="phone" class="form-control" placeholder="شماره تلفن :">
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">ایمیل شما <span class="text-danger">*</span></label>
+                                            <input name="email" id="email" type="email" class="form-control" placeholder="ایمیل شما :">
+                                            <input type="hidden" name="idrezerv" value="@ViewBag.idrez" />
+                                            <input type="hidden" name="idhotel" value="@ViewBag.id" />
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end formetoon ro biarid     bala avalie paien dovomi row-->
+                            @*</form>*@
+                        </div>
+
+                        <div class="form-check form-check-inline my-4">
+                            <div class="mb-0">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="creataccount">
+                                    <label class="form-check-label" for="creataccount">ایجاد حساب کاربری؟</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded shadow-lg p-4">
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="addresscheck">
+                                    <label class="form-check-label" for="addresscheck">به آدرس دیگری ارسال شود؟</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="form-label">نظرات </label>
+                                <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="یادداشت هایی در مورد سفارش شما :"></textarea>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+
+                    <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <div class="rounded shadow-lg p-4 sticky-bar">
+                            <div class="d-flex mb-4 justify-content-between">
+                                <h5>@v </h5>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-center table-padding mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="h6">آدرس</td>
+                                            <td class="text-end fw-bold">@q.Adres</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="h6">میزان اقامت</td>
+                                            <td class="text-end fw-bold">@ViewBag.roz شب</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="h6">تعداد نفرات</td>
+                                            <td class="text-end fw-bold">@ViewBag.nafarat</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="h6 border-0">مجموع </td>
+                                            <td class="text-end fw-bold border-0">000 @q.Gheymat تومان</td>
+                                        </tr>
+
+                                        <tr class="bg-light">
+                                            <td class="h5 fw-bold">مجموع </td>
+                                            <td class="text-end text-primary h4 fw-bold">000 @ViewBag.mab تومان</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <ul class="list-unstyled mt-4 mb-0">
+                                    <li>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" checked type="radio" name="flexRadioDefault" id="banktransfer">
+                                                <label class="form-check-label" for="banktransfer">انتقال مبلغ</label>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="mt-3">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="chequepay">
+                                                <label class="form-check-label" for="chequepay">پرداخت را چک کنید</label>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="mt-3">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="cashdelivery">
+                                                <label class="form-check-label" for="cashdelivery">پرداخت نقدی هنگام تحویل</label>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="mt-3">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <div class="form-check mb-0">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="paypalpay">
+                                                <label class="form-check-label" for="paypalpay">پی پال <a href="https://www.paypal.com/uk/webapps/mpp/paypal-popup" target="_blank" class="ms-2 text-primary">پی پال چیفات؟</a></label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="mt-4 pt-2">
+                                    <div class="d-grid">
+
+                                        <button  type="submit" class="btn btn-primary">رزور کنید</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*</form>*@<!--end form-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </section><!--end section-->
+    </form>
+    <!-- End -->
+    <!-- Wishlist Popup Start -->
+    <div class="modal fade" id="wishlist" tabindex="-1" role="dialog" aria-labelledby="wishlist-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content rounded shadow-lg border-0 overflow-hidden">
+                <div class="modal-body py-5">
+                    <div class="text-center">
+                        <div class="icon d-flex align-items-center justify-content-center bg-soft-danger rounded-circle mx-auto" style="height: 95px; width:95px;">
+                            <h1 class="mb-0"><i class="uil uil-heart-break align-middle"></i></h1>
+                        </div>
+                        <div class="mt-4">
+                            <h4>لیست خواسته های شما خالی است.</h4>
+                            <p class="text-muted">اولین درخواست لیست خواسته های خود را ایجاد کنید...</p>
+                            <div class="mt-4">
+                                <a href="javascript:void(0)" class="btn btn-outline-primary">+ لیست خواسته های جدید ایجاد کنید</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wishlist Popup End -->
+    <!-- Back to top -->
+    <a href="#" onclick="topFunction()" id="back-to-top" class="btn btn-icon btn-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+    <!-- Back to top -->
+    @section Scripts
+    {
+        <script src="~/js/bootstrap.bundle.min.js"></script>
+        <!-- SLIDER -->
+        <script src="~/js/tiny-slider.js"></script>
+        <!-- Icons -->
+        <script src="~/js/feather.min.js"></script>
+        <!-- Switcher -->
+        <script src="~/js/switcher.js"></script>
+        <!-- Main Js -->
+        <script src="~/js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+        <script src="~/js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    }
+</body>

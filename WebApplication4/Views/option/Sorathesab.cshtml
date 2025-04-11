@@ -1,0 +1,85 @@
+﻿@model BE.Sorathesabs
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/hotel/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/hotel/css/lineicons.css" />
+    <link rel="stylesheet" href="~/hotel/css/weather-icons.css" />
+    <link rel="stylesheet" href="~/hotel/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/hotel/css/styles.css" />
+    <link rel="stylesheet" href="~/hotel/css/styles.css" />
+</head>
+<body>
+    <div class="theme-page-section theme-page-section-xl theme-page-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="theme-payment-success">
+                        <div class="theme-payment-success-header">
+                            <i class="fa fa-check-circle theme-payment-success-header-icon"></i>
+                            <h1 class="theme-payment-success-title">رزرو شما با موفقیت انجام شد.</h1>
+                        </div>
+                        <div class="theme-payment-success-box">
+                            <ul class="theme-payment-success-summary">
+                                <li>
+                                    شماره تراکنش
+                                    <span>@Model.Trakonesh</span>
+                                </li>
+                                <li>
+                                    تاریخ پرداخت
+                                    <span> @Model.Tarikhvariz  </span>
+                                </li>
+                                <li>
+                                    مشتری
+                                    <span>@Model.NameNameKhanevadgy</span>
+                                </li>
+                                <li>
+                                    کد پیگیری
+                                    <span>@Model.Codepigiry</span>
+                                </li>
+
+                                <li>
+                                    نوع پرداخت
+                                    <span>آنلاین - اینترنتی</span>
+                                </li>
+                                <li>
+                                    کل مبلغ پرداختی
+                                    <span>@Model.Gheymat تومان</span>
+                                </li>
+                            </ul>
+                            <p class="theme-payment-success-check-order">
+                                شما می توانید جزئیات رزرو خود را در صفحه پروفایل خود بررسی کنید.
+                                <a href="@Url.Action("index","Home")">پنل کاربری</a>
+                            </p>
+                        </div>
+                        <ul class="theme-payment-success-actions">
+                            <li>
+                                <a href="#">
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

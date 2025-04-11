@@ -1,0 +1,26 @@
+﻿
+<div class="row">
+    @model IEnumerable<BE.HotelRooms>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 mt-4 pt-2">
+            <div class="card work-container work-modern rounded border-0 overflow-hidden">
+                <div class="card-body p-0">
+                    <img src="~/images/hotel/@item.urlpic" class="img-fluid rounded" alt="work-image">
+                    <div class="overlay-work"></div>
+                    <div class="content">
+                        <a href="javascript:void(0)" class="title text-white pb-2 border-bottom">@item.name</a>
+                        <ul class="post-meta mb-0 mt-2 text-white list-unstyled">
+                            <li class="list-inline-item me-3"><i class="uil uil-bed-double me-2"></i>@item.otagh اتاق </li>
+                            <li class="list-inline-item"><i class="uil uil-bath me-2"></i>@item.bathroom حمام </li>
+                        </ul>
+                        <p class="text-white d-block mb-0">اجاره <span class="text-success">@item.money هزار تومان</span> /@item.time </p>
+                    </div>
+                    <div class="read_more bg-primary text-center rounded-circle">
+                        <a href="javascript:void(0)" class="text-light d-block"><i data-feather="chevron-right" class="fea icon-sm title-dark"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><!--end col-->
+    }
+</div>

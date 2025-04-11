@@ -1,0 +1,307 @@
+﻿@model IEnumerable<BE.Hotel>
+
+@{
+    ViewData["Title"] = "test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section pre
+{
+    <!-- Bootstrap -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Slider -->
+    <link rel="stylesheet" href="~/css/tiny-slider.css" />
+    <!-- Icons -->
+    <link href="~/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Main Css -->
+    <link href="~/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="~/css/colors/default.css" rel="stylesheet" id="color-opt">
+    <script src="~/jquery-3.4.1.js"></script>
+}
+<!-- Hero Start -->
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title"> هتل های موجود </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="index.html">لنـدریـک </a></li>
+                                <li class="breadcrumb-item"><a href="index-shop.html">فروشگاه </a></li>
+                                <li class="breadcrumb-item active" aria-current="page">محصولات </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<!-- Hero End -->
+<!-- Start Products -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-12 mt-5 pt-2 mt-sm-0 pt-sm-0">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 col-md-7">
+                        <div class="section-title">
+                            <h4 class="mb-0">از تاریخ&nbsp;:@ViewBag.vorod &nbsp;&nbsp; تا تاریخ&nbsp;:@ViewBag.khoroj </h4>
+                        </div>
+                    </div><!--end col-->
+
+                    @*<div class="col-lg-4 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                        <div class="d-flex justify-content-md-between align-items-center">
+                            <div class="form custom-form">
+                                <div class="mb-0">
+                                    <select class="form-select form-control" aria-label="Default select example" id="Sortbylist-job">
+                                        <option selected>مرتب سازی بر اساس آخرین</option>
+                                        <option>مرتب سازی بر اساس محبوبیت</option>
+                                        <option>مرتب سازی بر اساس رتبه بندی</option>
+                                        <option>مرتب سازی بر اساس قیمت: کم به زیاد</option>
+                                        <option>مرتب سازی بر اساس قیمت: زیاد به کم</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mx-2">
+                                <a href="shop-grids.html" class="h5 text-muted"><i class="uil uil-apps"></i></a>
+                            </div>
+
+                            <div>
+                                <a href="shop-lists.html" class="h5 text-muted"><i class="uil uil-list-ul"></i></a>
+                            </div>
+                        </div>
+                    </div>*@
+                </div><!--end row-->
+
+                <div class="row">
+                    @try
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-12 mt-4 pt-2">
+                                <div class="card shop-list border-0 shadow position-relative">
+                                    <div class="row align-items-center g-0">
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="shop-image position-relative overflow-hidden">
+                                                <a href="/option/details?id=@item.Hotel_ID&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod"><img src="~/images/hotel/@item.urlpic" class="img-fluid" alt=""></a>
+                                                <a href="/option/details?id=@item.Hotel_ID&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod" class="overlay-work">
+                                                    <img src="~/images/hotel/'f'@item.urlpic" class="img-fluid" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-8 col-md-6">
+                                            <div class="card-body content p-4">
+                                                <a href="/option/details?id=@item.Hotel_ID&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod" class="text-dark product-name h6">@item.Name_Hotel </a>
+                                                <div class="d-lg-flex align-items-center mt-2 mb-3">
+                                                    <h6 class="text-muted small fst-italic mb-0 me-3">@item.Jozeyat_Gheymat هزار تومان<span class="text-success ms-1">30% تخفیف</span> </h6>
+
+                                                </div>
+                                                <p class="para-desc text-muted mb-1">@item.Tozihat</p>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="list-inline-item"><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="heart" class="icons"></i></a></li>
+                                                    <li class="mt-2 list-inline-item btt">
+                                                        <a href="javascript:void(0)" onclick="Details(@item.Hotel_ID)" data-bs-toggle="modal" data-id=@item.Hotel_ID data-bs-target="#productview" class="btn btn-icon btn-pills btn-soft-primary btt"><i data-feather="eye" class="icons"></i></a>
+                                                        @*<a onclick="Details(@item.Hotel_ID)" class="btn btn-success">details</a>*@
+                                                    </li>
+                                                    <li class="mt-2 list-inline-item"><a href="shop-cart.html" class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="shopping-cart" class="icons"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div><!--end col-->
+                                    </div> <!--end row-->
+                                </div><!--end blog post-->
+                            </div><!--end col-->
+                        }
+                    }
+                    catch
+                    {
+                        
+                    }
+
+                    <!-- PAGINATION START -->
+                    @*<div class="col-12 mt-4 pt-2">
+                        <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous"><i class="mdi mdi-arrow-left"></i> قبلی </a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next">بعدی <i class="mdi mdi-arrow-right"></i></a></li>
+                        </ul>
+                    </div>*@<!--end col-->
+                    <!-- PAGINATION END -->
+                </div><!--end row-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- End Products -->
+@*@await Html.PartialAsync("DetailModal")*@
+
+
+<div class="modal fade" id="productview" tabindex="-1" aria-labelledby="productview-title" aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-centered">
+        <div class="modal-content rounded shadow border-0">
+            <div class="modal-header border-bottom">
+                <h5 class="modal-title" id="productview-title">هتل همای مشهد </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="tiny-single-item">
+                                <div class="tiny-slide"><img src="~/images/hotel/06.jpg" class="img-fluid rounded" alt=""></div>
+                                <div class="tiny-slide"><img src="~/images/hotel/05.jpg" class="img-fluid rounded" alt=""></div>
+                                <div class="tiny-slide"><img src="~/images/hotel/04.jpg" class="img-fluid rounded" alt=""></div>
+                                <div class="tiny-slide"><img src="~/images/hotel/03.jpg" class="img-fluid rounded" alt=""></div>
+                                <div class="tiny-slide"><img src="~/images/hotel/02.jpg" class="img-fluid rounded" alt=""></div>
+                            </div>
+                        </div><!--end col-->
+
+                        <div class="col-lg-7 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                            <h4 class="title">هتل همای مشهد </h4>
+                            <h5 class="text-muted">600 هزار تومان <del class="text-danger ms-2">25000 تومان</del> </h5>
+                            <ul class="list-unstyled text-warning h5">
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                                <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                            </ul>
+
+                            <h5 class="mt-4">بررسی:</h5>
+                            <p class="text-muted">به هتل همای مشهد خوش آمدید.</p>
+
+                            <div class="row mt-4 pt-2">
+                                <div class="col-12 mt-4">
+                                    <div class="d-flex shop-list align-items-center">
+                                        <h6 class="mb-0">تعداد: </h6>
+                                        <div class="ms-3">
+                                            <div class="qty-icons">
+                                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="btn btn-icon btn-soft-primary minus">-</button>
+                                                <input min="0" name="quantity" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">
+                                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-icon btn-soft-primary plus">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+
+                            <div class="mt-4 pt-2">
+                                <a href="javascript:void(0)" class="btn btn-primary">اکنون رزرو کنید </a>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end container-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> جزئیات:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Preview">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<script>
+    //$(document).ready(function () {
+
+    //function Details(id) {
+    //    $(".btt").click(function () {
+    //        aleart("1");
+
+    //        $('#mymodal').modal('show');
+    //    });
+    //});
+
+    //////////$(document).ready(function myfunction() {
+    //////////    $(".btt").click(function () {
+    //////////        //var currentrow = $(this).closest("a");
+    //////////        //alert(currentrow.find("td:eq(0)").text());
+    //////////        alert("aaaa");
+    //////////        $('#mymodal').modal('show');
+    //////////    });
+    //////////});
+
+
+            //function Details(id) {
+            //    $.ajax({
+            //        type: "Get",
+            //        url: "/option/DetailModal",
+            //        data: { id: id },
+            //        success: function (data) {
+            //            alert(data);
+            //            $('#Preview').html(data);
+            //            $('#mymodal').modal('show');
+            //        }
+            //    });
+            //}
+    /*  });*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <!-- Slider -->
+    <script src="~/js/tiny-slider.js"></script>
+    <!-- Icons -->
+    <script src="~/js/feather.min.js"></script>
+    <!-- Switcher -->
+    <script src="~/js/switcher.js"></script>
+    <!-- Main Js -->
+    <script src="~/js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+    <script src="~/js/app.js"></script>
+}
+@*<script>
+        $(document).ready(function myfunction() {
+            $(".btt").click(function () {
+                //var currentrow = $(this).closest("a");
+                //alert(currentrow.find("td:eq(0)").text());
+                alert($(this).data('Hotel_ID'));
+            });
+        });
+    </script>*@
+
+
+<!-- Product View Start -->
+<!-- Product View End -->
+@*<script>
+        $(document).on("click", ".open-AddBookDialog", function () {
+            var myBookId = $(this).data('Hotel_ID');
+            $(".modal-body #bookId").val(myBookId);
+            // As pointed out in comments,
+            // it is unnecessary to have to manually call the modal.
+            $('#addBookDialog').modal('show');
+        });
+    </script>*@
+
+

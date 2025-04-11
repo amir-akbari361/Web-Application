@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BE.HotelRooms>
+@foreach (var item in Model)
+{
+        <div class="tiny-slide">
+            <div class="card shop-list border-0 position-relative m-2">
+                <ul class="label list-unstyled mb-0">
+                    <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-danger">داغ </a></li>
+                </ul>
+                <div class="shop-image position-relative overflow-hidden rounded shadow">
+                    <a href="/option/details?id=@item.id&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod"><img src="~/images/hotel/@item.urlpic" class="img-fluid" alt=""></a>
+                    <a href="/option/details?id=@item.id&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod" class="overlay-work">
+                        <img src="~/images/hotel/'f'@item.urlpic" class="img-fluid" alt="">
+                    </a>
+                    <ul class="list-unstyled shop-icons">
+                        <li><a href="javascript:void(0)" class="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" class="icons"></i></a></li>
+                        <li class="mt-2"><a href="shop-product-detail.html" class="btn btn-icon btn-pills btn-soft-primary"><i data-feather="eye" class="icons"></i></a></li>
+                        <li class="mt-2"><a href="/option/details?id=@item.id&khoroj=@ViewBag.khoroj&vorod=@ViewBag.vorod" class="btn btn-icon btn-pills btn-soft-warning"><i data-feather="shopping-cart" class="icons"></i></a></li>
+                    </ul>
+                </div>
+                <div class="card-body content pt-4 p-2">
+                    <a href="shop-product-detail.html" class="text-dark product-name h6">@item.name </a>
+                    <div class="d-flex justify-content-between mt-1">
+                        <h6 class="text-muted small fst-italic mb-0 mt-1">@item.money هزار تومان@*<del class="text-danger ms-2">@item. هزار تومان </del>*@ </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
