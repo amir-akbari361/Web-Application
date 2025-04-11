@@ -18,7 +18,7 @@ The solution follows a traditional 3-layer architecture:
 - SQL Server (MySQL)
 
 ## 📸  Program Screenshots  
-![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/1.png)
+![Program Overview](https://github.com/amir-akbari361/Web-Application/1.png)
 ![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/2.jpg)
 ![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/3.jpg)
 ![Program Overview](https://github.com/amir-akbari361/Web-Application/tree/main/screenshot/4.jpg)
